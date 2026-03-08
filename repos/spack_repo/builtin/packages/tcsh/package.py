@@ -28,6 +28,7 @@ class Tcsh(AutotoolsPackage):
 
     license("BSD-3-Clause")
 
+    version("6.24.16", sha256="4208cf4630fb64d91d81987f854f9570a5a0e8a001a92827def37d0ed8f37364")
     version("6.24.14", sha256="36880f258a63fc11fe72a65098b585ebc4ecdee24388b8ebec97e6ae8e485318")
     version("6.24.10", sha256="13475c0fbeb74139d33ed793bf00ffbbb2ac2dc9fb1d44467a410760aba36664")
     version("6.24.00", sha256="60be2c504bd8f1fa6e424b1956495d7e7ced52a2ac94db5fd27f4b6bfc8f74f0")
