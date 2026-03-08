@@ -224,7 +224,6 @@ class Acts(CMakePackage, CudaPackage):
     depends_on("intel-tbb @2020.1:", when="+examples")
     depends_on("millepede@01-00-00:", when="+mille")
     depends_on("nlohmann-json @3.10.5:", when="+json")
-    depends_on("nlohmann-json @3.10.5:", when="@37: +json")
     depends_on("nlohmann-json @3.11.3:", when="@45: +json")
     depends_on("torch-scatter", when="+gnn")
     depends_on("torch-scatter +cuda", when="+cuda")
