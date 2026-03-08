@@ -35,8 +35,11 @@ class PyMaturin(PythonPackage):
     with default_args(type="build"):
         depends_on("py-setuptools@77:", when="@1.9.6:")
         depends_on("py-setuptools")
-        depends_on("py-setuptools-rust@1.11:", when="@1.8.6:")
         depends_on("py-setuptools-rust@1.4:")
+        depends_on("py-setuptools-rust@1.11:", when="@1.8.4:")
+
+        # Historical build dependencies
+        depends_on("py-wheel@0.36.2:1.8.3")
 
         depends_on("py-wheel@0.36.2:", when="@:1.8.3")
 

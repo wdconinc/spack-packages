@@ -33,6 +33,7 @@ class PyAttrs(PythonPackage):
     version("17.4.0", sha256="1c7960ccfd6a005cd9f7ba884e6316b5e430a3f1a6c37c5f87d8b43f83b54ec9")
     version("16.3.0", sha256="80203177723e36f3bbe15aa8553da6e80d47bfe53647220ccaa9ad7a5e473ccc")
 
+    depends_on("python@3.8:", when="@25.3", type=("build", "run"))
     depends_on("python@3.9:", when="@25.4:", type=("build", "run"))
 
     depends_on("py-hatchling", when="@23.1:", type="build")
