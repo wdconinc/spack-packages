@@ -18,6 +18,8 @@ class PyOcnn(PythonPackage):
 
     license("MIT")
 
+    version("2.3.1", sha256="cbb44189667269975d0427b50a1b14df219ea0ccbdd071f8e50d03b61511dc6b")
+    version("2.2.8", sha256="6c8c3b731d87f04daa2206d227579789ba79364d49524f7351fd1354228057cd")
     version("2.2.0", sha256="5fb54305130921ece4cccf1697ec281f49d3e95837ba0e124cab9f8a567ecb80")
 
     depends_on("python@3.6:", type=("build", "run"))

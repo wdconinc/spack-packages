@@ -17,6 +17,11 @@ class PyDask(PythonPackage):
 
     license("BSD-3-Clause")
 
+    version("2026.1.2", sha256="1136683de2750d98ea792670f7434e6c1cfce90cab2cc2f2495a9e60fd25a4fc")
+    version("2025.12.0", sha256="8d478f2aabd025e2453cf733ad64559de90cf328c20209e4574e9543707c3e1b")
+    version("2025.11.0", sha256="23d59e624b80ee05b7cc8df858682cca58262c4c3b197ccf61da0f6543c8f7c3")
+    version("2025.10.0", sha256="fd3159c319c27cea39b891c0f22d60056a33575fb4906618eab0aeeb5dcd0cbc")
+    version("2025.9.1", sha256="718df73e1fd3d7e2b8546e0f04ce08e1ed7f9aa3da1eecd0c1f44c8b6d52f7e0")
     version("2025.7.0", sha256="c3a0d4e78882e85ea81dbc71e6459713e45676e2d17e776c2f3f19848039e4cf")
     version("2025.3.0", sha256="322834f44ebc24abeb564c56ccb817c97d6e7af6be71ad0ad96b78b51f2e0e85")
     version("2024.12.1", sha256="bac809af21c2dd7eb06827bccbfc612504f3ee6435580e548af912828f823195")
@@ -49,9 +54,11 @@ class PyDask(PythonPackage):
     depends_on("python@3.10:", type=("build", "run"), when="@2024.8.1:")
 
     depends_on("py-setuptools", type="build")
+    depends_on("py-setuptools@80:", type="build", when="@2025.11.0:")
     depends_on("py-setuptools@62.6:", type="build", when="@2023.4.1:")
+    depends_on("py-setuptools-scm@9:", type="build", when="@2025.11.0:")
     depends_on("py-versioneer@0.28+toml", type="build", when="@2023.4.1:2023.10.0")
-    depends_on("py-versioneer@0.29+toml", type="build", when="@2023.10.1:")
+    depends_on("py-versioneer@0.29+toml", type="build", when="@2023.10.1:2025.10.0")
 
     # Common requirements
     depends_on("py-packaging@20:", type="build", when="@2022.10.2:")
