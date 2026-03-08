@@ -19,6 +19,7 @@ class PyWheel(Package, PythonExtension):
 
     tags = ["build-tools"]
 
+    version("0.46.3", sha256="4b399d56c9d9338230118d705d9737a2a468ccca63d5e813e2a4fc7815d8bc4d")
     version("0.45.1", sha256="708e7481cc80179af0e556bbf0cc00b8444c7321e2700b8d8580231d13017248")
     version("0.45.0", sha256="52f0baa5e6522155090a09c6bd95718cc46956d1b51d537ea5454249edb671c7")
     version("0.44.0", sha256="2376a90c98cc337d18623527a97c31797bd02bad0033d41547043a1cbfbe448f")

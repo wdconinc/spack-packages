@@ -19,6 +19,11 @@ class PyFilelock(PythonPackage):
 
     license("Unlicense")
 
+    version("3.24.3", sha256="011a5644dc937c22699943ebbfc46e969cdde3e171470a6e40b9533e5a72affa")
+    version("3.23.0", sha256="f64442f6f4707b9385049bb490be0bc48e3ab8e74ad27d4063435252917f4d4b")
+    version("3.22.0", sha256="61eb14cc8775af91381024c7282e3f526e1fb27f42bfdde706113c7e01a5544b")
+    version("3.21.2", sha256="cfd218cfccf8b947fce7837da312ec3359d10ef2a47c8602edd59e0bacffb708")
+    version("3.20.4", sha256="92b98bb6be1a4e6c1b00f8aedae011c6e2d367c195000a049daa34f554af3d94")
     version("3.19.1", sha256="66eda1888b0171c998b35be2bcc0f6d75c388a7ce20c3f3f37aa8e96c2dddf58")
     version("3.12.4", sha256="2e6f249f1f3654291606e046b09f1fd5eac39b360664c27f5aad072012f8bcbd")
     version("3.12.0", sha256="fc03ae43288c013d2ea83c8597001b1129db351aad9c57fe2409327916b8e718")
@@ -36,7 +41,8 @@ class PyFilelock(PythonPackage):
     version("2.0.9", sha256="0f91dce339c9f25d6f2e0733a17e4f9a47b139dffda52619a0e61e013e5c6782")
     version("2.0.8", sha256="7e48e4906de3c9a5d64d8f235eb3ae1050dfefa63fd65eaf318cc915c935212b")
 
-    depends_on("python@3.9:", when="@3.17:", type=("build", "run"))
+    depends_on("python@3.10:", when="@3.20:", type=("build", "run"))
+    depends_on("python@3.9:", when="@3.17:3.19", type=("build", "run"))
     depends_on("python@3.8:", when="@3.12.3:", type=("build", "run"))
 
     depends_on("py-hatch-vcs@0.5:", when="@3.19:", type="build")
