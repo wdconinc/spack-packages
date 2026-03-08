@@ -16,6 +16,7 @@ class PyWerkzeug(PythonPackage):
 
     license("BSD-3-Clause", checked_by="wdconinc")
 
+    version("3.1.6", sha256="210c6bede5a420a913956b4791a7f4d6843a43b6fcee4dfa08a65e93007d0d25")
     version("3.1.3", sha256="60723ce945c19328679790e3282cc758aa4a6040e4bb330f53d30fa546d44746")
     version("3.0.4", sha256="34f2371506b250df4d4f84bfe7b0921e4762525762bbd936614909fe25cd7306")
     version("3.0.0", sha256="3ffff4dcc32db52ef3cc94dff3000a3c2846890f3a5a51800a27b909c5e770f0")

@@ -20,6 +20,8 @@ class PyBeautifulsoup4(PythonPackage):
     # Requires pytest
     skip_modules = ["bs4.tests"]
 
+    version("4.14.3", sha256="6292b1c5186d356bba669ef9f7f051757099565ad9ada5dd630bd9de5fa7fb86")
+    version("4.13.5", sha256="5e70131382930e7c3de33450a2f54a63d5e4b19386eab43a5b34d594268f3695")
     version("4.13.4", sha256="dbb3c4e1ceae6aefebdaf2423247260cd062430a410e38c66f2baa50a8437195")
     version("4.12.3", sha256="74e3d1928edc070d21748185c46e3fb33490f22f52a3addee9aee0f4f7781051")
     version("4.12.2", sha256="492bbc69dca35d12daac71c4db1bfff0c876c00ef4a2ffacce226d4638eb72da")
