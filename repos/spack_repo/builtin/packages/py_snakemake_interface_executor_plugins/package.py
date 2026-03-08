@@ -18,6 +18,7 @@ class PySnakemakeInterfaceExecutorPlugins(PythonPackage):
 
     license("MIT")
 
+    version("9.3.9", sha256="988ab388d48522fac84107867ae3f3398312b93b55df6ed7b99afc225468ca26")
     version("9.3.2", sha256="19c50dc82989ff25d10386cfb3c99da9d2dc980d95ecd30bbb431374dcd390b3")
     version("9.3.1", sha256="98e1b7a6c5e0997ac391812ab66a79822c38ac98ea9322f2fd8d6a1294e219a0")
     version("9.3.0", sha256="11e70cf3d821d9f071b18b8a8147bc4dbad37f3ee68647f72aa3c80c4ab5c8dc")
