@@ -13,7 +13,15 @@ class PyBotocore(PythonPackage):
     homepage = "https://github.com/boto/botocore"
     pypi = "botocore/botocore-1.13.44.tar.gz"
 
+    version("1.42.52", sha256="3bdef10aee4cee13ff019b6a1423a2ce3ca17352328d9918157a1829e5cc9be1")
+    version("1.41.6", sha256="08fe47e9b306f4436f5eaf6a02cb6d55c7745d13d2d093ce5d917d3ef3d3df75")
+    version("1.40.76", sha256="2b16024d68b29b973005adfb5039adfe9099ebe772d40a90ca89f2e165c495dc")
     version("1.40.64", sha256="a13af4009f6912eafe32108f6fa584fb26e24375149836c2bcaaaaec9a7a9e58")
+    version("1.39.17", sha256="1a1f0b29dab5d1b10d16f14423c16ac0a3043272f579e9ab0d757753ee9a7d2b")
+    version("1.38.46", sha256="8798e5a418c27cf93195b077153644aea44cb171fcd56edc1ecebaa1e49e226e")
+    version("1.37.38", sha256="c3ea386177171f2259b284db6afc971c959ec103fa2115911c4368bea7cbbc5d")
+    version("1.36.26", sha256="4a63bcef7ecf6146fd3a61dc4f9b33b7473b49bdaf1770e9aaca6eee0c9eab62")
+    version("1.35.99", sha256="1eab44e969c39c5f3d9a3104a0836c24715579a455f12b3979a31d7cde51b3c3")
     version("1.34.162", sha256="adc23be4fb99ad31961236342b7cbf3c0bfc62532cd02852196032e8c0d682f3")
     version("1.34.44", sha256="b0f40c54477e8e0a5c43377a927b8959a86bb8824aaef2d28db7c9c367cdefaa")
     version("1.31.41", sha256="4dad7c5a5e70940de54ebf8de3955450c1f092f43cacff8103819d1e7d5374fa")

@@ -17,8 +17,10 @@ class PyFsspecXrootd(PythonPackage):
 
     license("BSD-3-Clause", checked_by="wdconinc")
 
+    version("0.5.1", sha256="76f2b3a0cfa58e2b26c2b67cf72769169f1eed44294ca98ec0648d19e45bfd85")
     version("0.4.0", sha256="d7f124430d26ab9139d33bc50fa8abfde3624db5dcaa5c18f56af9bf17f16f13")
 
+    depends_on("python@3.9:", type=("build", "run"), when="@0.5:")
     depends_on("python@3.8:", type=("build", "run"))
 
     depends_on("py-setuptools@42:", type="build")

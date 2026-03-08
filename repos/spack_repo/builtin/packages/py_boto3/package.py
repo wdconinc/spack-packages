@@ -13,6 +13,9 @@ class PyBoto3(PythonPackage):
     homepage = "https://github.com/boto/boto3"
     pypi = "boto3/boto3-1.10.44.tar.gz"
 
+    version("1.42.52", sha256="ff4a4afb832f63a1358e11fe6eb321da0f4767979c6721dd32fb02e6eabcebf5")
+    version("1.41.5", sha256="bc7806bee681dfdff2fe2b74967b107a56274f1e66ebe4d20dc8eee1ea408d17")
+    version("1.40.76", sha256="16f4cf97f8dd8e0aae015f4dc66219bd7716a91a40d1e2daa0dafa241a4761c5")
     version("1.40.64", sha256="b92d6961c352f2bb8710c9892557d4b0e11258b70967d4e740e1c97375bcd779")
     version("1.34.162", sha256="873f8f5d2f6f85f1018cbb0535b03cceddc7b655b61f66a0a56995238804f41f")
     version("1.34.44", sha256="86bcf79a56631609a9f8023fe8f53e2869702bdd4c9047c6d9f091eb39c9b0fa")
@@ -41,6 +44,8 @@ class PyBoto3(PythonPackage):
     depends_on("python@2.6:", when="@1.9:", type=("build", "run"))
     depends_on("py-setuptools", type="build")
 
+    depends_on("py-botocore@1.42.0:1.42", when="@1.42:", type=("build", "run"))
+    depends_on("py-botocore@1.41.0:1.41", when="@1.41:1.41", type=("build", "run"))
     depends_on("py-botocore@1.40.64:1.40", when="@1.40.64", type=("build", "run"))
     depends_on("py-botocore@1.34.162:1.34", when="@1.34.162", type=("build", "run"))
     depends_on("py-botocore@1.34.44:1.34", when="@1.34.44", type=("build", "run"))
@@ -60,7 +65,9 @@ class PyBoto3(PythonPackage):
     depends_on("py-jmespath@0.7.1:1", type=("build", "run"))
     depends_on("py-jmespath@0.7.1:0", when="@:1.20", type=("build", "run"))
 
-    depends_on("py-s3transfer@0.14", when="@1.40.27:", type=("build", "run"))
+    depends_on("py-s3transfer@0.16", when="@1.42:", type=("build", "run"))
+    depends_on("py-s3transfer@0.15", when="@1.41:1.41", type=("build", "run"))
+    depends_on("py-s3transfer@0.14", when="@1.40.27:1.40", type=("build", "run"))
     depends_on("py-s3transfer@0.10", when="@1.34.6:1.35", type=("build", "run"))
     depends_on("py-s3transfer@0.9", when="@1.34:1.34.5", type=("build", "run"))
     depends_on("py-s3transfer@0.8.2:0.8", when="@1.33.4:1.33", type=("build", "run"))
