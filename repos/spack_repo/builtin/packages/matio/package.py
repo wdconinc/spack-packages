@@ -16,6 +16,7 @@ class Matio(AutotoolsPackage):
 
     license("BSD-2-Clause")
 
+    version("1.5.29", sha256="d9e5f7a2f2c594eff15f550e34729b01991cdd5a028a558be8ce595b32233afb")
     version("1.5.26", sha256="8b47c29f58e468dba7a5555371c6a72ad4c6aa8b15f459b2b0b65a303c063933")
     version("1.5.17", sha256="5e455527d370ab297c4abe5a2ab4d599c93ac7c1a0c85d841cc5c22f8221c400")
     version("1.5.16", sha256="47ba3d5d269d5709b8d9a7385c88c8b5fb5ff875ef781a1ced4892b5b03c4f44")

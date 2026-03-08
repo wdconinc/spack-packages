@@ -34,6 +34,8 @@ class Harfbuzz(MesonPackage, AutotoolsPackage, CMakePackage):
 
     maintainers("AlexanderRichert-NOAA")
 
+    version("12.3.2", sha256="6f6db164359a2da5a84ef826615b448b33e6306067ad829d85d5b0bf936f1bb8")
+    version("12.2.0", sha256="ecb603aa426a8b24665718667bda64a84c1504db7454ee4cadbd362eea64e545")
     version("11.5.1", sha256="972a60a8d274d49e70361da6920c3a73dfb0fb4387f6c6811906a47ba634d8a1")
     version("11.4.1", sha256="7aafab93115eb56cdc9a931ab7d19ff60d7f2937b599d140f17236f374e32698")
     version("11.3.3", sha256="e1fbca6b32a91ae91ecd9eb2ca8d47a5bfe2b1cb2e54855ab7a0b464919ef358")
@@ -98,6 +100,7 @@ class Harfbuzz(MesonPackage, AutotoolsPackage, CMakePackage):
         patch("harfbuzz_10_0_cmake_add_missing_table_sources.patch", when="@10:11.1")
         patch("harfbuzz_11_2_cmake_add_missing_table_sources.patch", when="@11.2:11.3")
         patch("harfbuzz_11_4_cmake_add_missing_table_sources.patch", when="@11.4")
+        depends_on("cmake@3.14:", type="build")
 
     depends_on("c", type="build")
     depends_on("cxx", type="build")
