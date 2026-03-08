@@ -786,6 +786,11 @@ class Python(Package):
         if spec.satisfies("@3.10:3.11 ~readline"):
             config_args.append("--with-readline=no")
 
+        # Disable curses modules when ~readline to avoid linking issues with ncurses
+        if spec.satisfies("~readline"):
+            config_args.append("py_cv_module__curses=n/a")
+            config_args.append("py_cv_module__curses_panel=n/a")
+
         # Disable the nis module in the configure script for Python 3.11 and 3.12. It is deleted
         # in Python 3.13. See ``def patch`` for disabling the nis module in Python 3.10 and older.
         if spec.satisfies("@3.11:3.12"):

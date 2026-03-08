@@ -76,6 +76,8 @@ class Re2(CMakePackage):
 
     depends_on("cxx", type="build")
 
+    depends_on("cmake@3.22:", type="build", when="@2025-08-05:")
+
     depends_on("abseil-cpp", when="@2023-09-01:")
 
     depends_on("icu4c", when="+icu")

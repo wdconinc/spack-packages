@@ -22,6 +22,11 @@ class Cppgsl(CMakePackage):
 
     version("main", branch="main", deprecated=True)
     version(
+        "4.2.1",
+        sha256="d959f1cb8bbb9c94f033ae5db60eaf5f416be1baa744493c32585adca066fe1f",
+        deprecated=True,
+    )
+    version(
         "4.2.0",
         sha256="2c717545a073649126cb99ebd493fa2ae23120077968795d2c69cbab821e4ac6",
         deprecated=True,

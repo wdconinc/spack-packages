@@ -42,5 +42,6 @@ class PyParamiko(PythonPackage):
     depends_on("py-pynacl@1.5:", when="@3:", type=("build", "run"))
     depends_on("py-six", when="@2.9.3:2", type=("build", "run"))
 
-    depends_on("py-invoke@1.3:", when="+invoke", type=("build", "run"))
-    depends_on("py-invoke@2:", when="@3: +invoke", type=("build", "run"))
+    depends_on("py-invoke@2:", when="@4:", type=("build", "run"))
+    depends_on("py-invoke@1.3:", when="@:3 +invoke", type=("build", "run"))
+    depends_on("py-invoke@2:", when="@3:3 +invoke", type=("build", "run"))
