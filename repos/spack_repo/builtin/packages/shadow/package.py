@@ -17,6 +17,8 @@ class Shadow(AutotoolsPackage):
 
     license("BSD-3-Clause")
 
+    version("4.18.0", sha256="ae486ce4c0bce55c42d76d8478e428c41586f1da2f89fbf5228243fb4d849db4")
+    version("4.17.4", sha256="0a288c251f339846af6bdfd4447b196153204deba42407bce5b0917998322e9b")
     version("4.16.0", sha256="1744f339e07a2b41056347ddd612839762ff565d7e9494fb049428002fa2e7e0")
     version("4.15.1", sha256="b34686b89b279887ffbf1f33128902ccc0fa1a998a3add44213bb12d7385b218")
     version("4.13", sha256="813057047499c7fe81108adcf0cffa3ad4ec75e19a80151f9cbaa458ff2e86cd")
