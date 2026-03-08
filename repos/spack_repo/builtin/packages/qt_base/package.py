@@ -231,6 +231,7 @@ class QtBase(QtPackage):
         depends_on("libdrm")
         depends_on("at-spi2-core", when="+accessibility")
     depends_on("dbus", when="+dbus")
+    depends_on("egl", when="+opengl", type=("build", "link"))
     depends_on("gl", when="+opengl", type=("build", "link"))
     depends_on("glu", when="+opengl", type=("build", "link"))
     depends_on("sqlite", when="+sql")
@@ -328,8 +329,7 @@ class QtBase(QtPackage):
         for k in features:
             args.append(self.define_qt_feature(k, True))
 
-        # Disable EGL feature to avoid implicit EGL detection
-        args.append(self.define("FEATURE_egl", "no"))
+        args.append(self.define_qt_feature("egl", "+opengl" in spec))
         if "~opengl" in spec:
             args.append(self.define("INPUT_opengl", "no"))
 

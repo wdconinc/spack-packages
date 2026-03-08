@@ -83,6 +83,7 @@ class PyCryptography(PythonPackage):
     depends_on("rust@1.41:", type="build")
     depends_on("pkgconfig", when="@40:", type="build")
 
+    depends_on("py-cffi@2:", when="@46: ^python@3.9:", type=("build", "run"))
     depends_on("py-cffi@1.14:", when="@45:", type=("build", "run"))
     depends_on("py-cffi@1.12:", type=("build", "run"))
     depends_on("py-typing-extensions@4.13.2:", when="@46: ^python@:3.10", type=("build", "run"))
