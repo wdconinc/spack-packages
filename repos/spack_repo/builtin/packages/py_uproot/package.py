@@ -92,7 +92,6 @@ class PyUproot(PythonPackage):
     depends_on("py-numpy@:1", type=("build", "run"), when="@:5.3.2")
     depends_on("py-fsspec", type=("build", "run"))
 
-    conflicts("^py-fsspec@2025.7.0", when="@5.6.4:")
     depends_on("py-packaging", when="@5:", type=("build", "run"))
     depends_on("py-typing-extensions@4.1:", when="@5.1: ^python@:3.10", type=("build", "run"))
 
