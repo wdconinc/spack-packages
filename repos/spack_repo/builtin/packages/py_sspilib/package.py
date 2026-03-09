@@ -12,6 +12,7 @@ class PySspilib(PythonPackage):
 
     homepage = "https://github.com/jborean93/sspilibi"
     pypi = "sspilib/sspilib-0.1.0.tar.gz"
+    git = "https://github.com/jborean93/sspilib.git"
 
     maintainers("wdconinc")
 
