@@ -12,6 +12,7 @@ class PyPyspnego(PythonPackage):
 
     homepage = "https://github.com/jborean93/pyspnego"
     pypi = "pyspnego/pyspnego-0.11.1.tar.gz"
+    git = "https://github.com/jborean93/pyspnego.git"
 
     maintainers("wdconinc")
 
@@ -24,8 +25,11 @@ class PyPyspnego(PythonPackage):
     variant("kerberos", default=False, description="Enable Kerberos authentication on Linux")
 
     depends_on("py-setuptools@61:", type="build")
+    depends_on("py-setuptools@77.0.3:", type="build", when="@0.12:")
+    depends_on("python@3.9:", type=("build", "run"), when="@0.12:")
     depends_on("py-cryptography", type=("build", "run"))
-    depends_on("py-sspilib", type=("build", "run"), when="platform=windows")
+    depends_on("py-sspilib@0.1.0:", type=("build", "run"), when="@:0.11 platform=windows")
+    depends_on("py-sspilib@0.3.0:", type=("build", "run"), when="@0.12: platform=windows")
 
     with when("+kerberos"):
         depends_on("py-gssapi@1.6.0:", type=("build", "run"))
