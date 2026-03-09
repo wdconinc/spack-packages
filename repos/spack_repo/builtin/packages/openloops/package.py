@@ -282,7 +282,7 @@ class Openloops(Package):
             f.write("cc = {0}\n".format(env["SPACK_CC"]))
             f.write("cxx = {0}\n".format(env["SPACK_CXX"]))
             f.write("fortran_compiler = {0}\n".format(env["SPACK_FC"]))
-            if self.spec.satisfies("@1.3.1") and not is_intel and not_is_clang:
+            if self.spec.satisfies("@1.3.1") and not is_intel and not is_clang:
                 f.write("gfortran_f_flags = -ffree-line-length-none\n")
             if self.spec.satisfies("@2.1.1") and not is_intel and not is_clang:
                 f.write("gfortran_f_flags = -ffree-line-length-none " + "-fdollar-ok ")
