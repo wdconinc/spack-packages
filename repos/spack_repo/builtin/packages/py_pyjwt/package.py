@@ -11,11 +11,13 @@ class PyPyjwt(PythonPackage):
     """JSON Web Token implementation in Python"""
 
     homepage = "https://github.com/jpadilla/pyjwt"
-    pypi = "PyJWT/PyJWT-1.7.1.tar.gz"
+    pypi = "PyJWT/pyjwt-1.7.1.tar.gz"
+    git = "https://github.com/jpadilla/pyjwt.git"
 
     license("MIT")
 
     version("2.13.0", sha256="41571c89ca91598c79e8ef18a2d07367d4810fbbd6f637794879baf1b7703423")
+    version("2.11.0", sha256="35f95c1f0fbe5d5ba6e43f00271c275f7a1a4db1dab27bf708073b75318ea623")
     version("2.10.1", sha256="3cc5772eb20009233caf06e9d8a0577824723b44e6648ee0a2aedb6cf9381953")
     version("2.4.0", sha256="d42908208c699b3b973cbeb01a969ba6a96c821eefb1c5bfe4c390c01d67abba")
     version("2.1.0", sha256="fba44e7898bbca160a2b2b501f492824fc8382485d3a6f11ba5d0c1937ce6130")

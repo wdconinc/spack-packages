@@ -12,6 +12,7 @@ class PyRucioClients(PythonPackage):
 
     homepage = "https://rucio.cern.ch/"
     pypi = "rucio_clients/rucio_clients-35.4.0.tar.gz"
+    git = "https://github.com/rucio/rucio.git"
 
     maintainers("wdconinc")
 
@@ -77,7 +78,6 @@ class PyRucioClients(PythonPackage):
     with when("+kerberos"):
         depends_on("py-kerberos@1.3.1:")
         depends_on("py-pykerberos@1.2.4:")
-        depends_on("py-requests-kerberos@0.14.0:", when="@:36")
         depends_on("py-requests-kerberos@0.15.0:", when="@37:")
 
     with when("+swift"):
