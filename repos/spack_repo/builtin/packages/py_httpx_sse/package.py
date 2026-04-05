@@ -12,6 +12,7 @@ class PyHttpxSse(PythonPackage):
 
     homepage = "https://github.com/florimondmanca/httpx-sse"
     pypi = "httpx-sse/httpx_sse-0.4.3.tar.gz"
+    git = "https://github.com/florimondmanca/httpx-sse"
 
     license("MIT", checked_by="aprozo")
 
