@@ -67,6 +67,8 @@ class GdkPixbuf(MesonPackage):
         args = [f"-Dman={'true' if self.spec.satisfies('+man') else 'false'}"]
         if self.spec.satisfies("@2.42.9:"):
             args.append(f"-Dtests={'true' if self.run_tests else 'false'}")
+        if self.spec.satisfies("@2.44:"):
+            args.append("-Dglycin=disabled")
         return args
 
     def setup_build_environment(self, env: EnvironmentModifications) -> None:
