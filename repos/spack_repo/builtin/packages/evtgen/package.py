@@ -22,6 +22,11 @@ class Evtgen(CMakePackage):
     version("02.02.02", sha256="e543d1213cd5003124139d0dc7eee9247b0b9d44154ff8a88bac52ba91c5dfc9")
     version("02.02.01", sha256="1fcae56c6b27b89c4a2f4b224d27980607442185f5570e961f6334a3543c6e77")
     version("02.02.00", sha256="0c626e51cb17e799ad0ffd0beea5cb94d7ac8a5f8777b746aa1944dd26071ecf")
+    version(
+        "02.00.01",
+        sha256="2d5a60e5ee65a0c90a12a387b202552ea458d8d1560c3dd9da68b836614a1834",
+        url="https://evtgen.hepforge.org/downloads?f=EvtGen-R02-00-01.tar.gz",
+    )
     version("02.00.00", sha256="02372308e1261b8369d10538a3aa65fe60728ab343fcb64b224dac7313deb719")
 
     variant("pythia8", default=True, description="Build with pythia8")
