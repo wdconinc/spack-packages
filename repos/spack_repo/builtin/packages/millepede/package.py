@@ -28,8 +28,18 @@ class Millepede(MakefilePackage, CMakePackage):
     version("05-01-00", sha256="fec88805d33004f9ca03733dc14f7b30f888cd3a48e3cdf4333d74b42242d3d3")
     version("05-00-00", sha256="df8ffb2ffae3c4f32177824026f79ed3b824536f5ef581643aaae09da308aca6")
     version(
+        "04-16-03",
+        sha256="ede22293d731526749aa964559e62745a33e269ca913b0707ac9952769f6bddb",
+        deprecated=True,
+    )
+    version(
         "04-13-03",
         sha256="669a6e46a6f02ba3c78b2760e2ffb2c90d25b582ccd1a5c0770eef81c7bcbbe9",
+        deprecated=True,
+    )
+    version(
+        "04-10-00",
+        sha256="fe9900d764db525f229fa0655692d8f127b6fa8468a76f98f61e57a04d691033",
         deprecated=True,
     )
     version(
