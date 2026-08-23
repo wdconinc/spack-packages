@@ -1,0 +1,53 @@
+From a2bdeb618e43e8a11d0174c77a712909f85b16b3 Mon Sep 17 00:00:00 2001
+From: Wouter Deconinck <wdconinc@gmail.com>
+Date: Mon, 16 Mar 2026 20:03:46 -0500
+Subject: [PATCH 1/2] Wrap periodic face classification inputs
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+---
+ .../BRepTopAdaptor_FClass2d.cxx               | 22 +++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+
+diff --git a/src/ModelingAlgorithms/TKTopAlgo/BRepTopAdaptor/BRepTopAdaptor_FClass2d.cxx b/src/ModelingAlgorithms/TKTopAlgo/BRepTopAdaptor/BRepTopAdaptor_FClass2d.cxx
+index e604cc312b..6697e37086 100644
+--- a/src/ModelingAlgorithms/TKTopAlgo/BRepTopAdaptor/BRepTopAdaptor_FClass2d.cxx
++++ b/src/ModelingAlgorithms/TKTopAlgo/BRepTopAdaptor/BRepTopAdaptor_FClass2d.cxx
+@@ -585,6 +585,17 @@ TopAbs_State BRepTopAdaptor_FClass2d::Perform(const gp_Pnt2d& _Puv,
+         vv += vperiod;
+       }
+     }
++
++    if (IsUPer)
++    {
++      u        = uu;
++      urecadre = true;
++    }
++    if (IsVPer)
++    {
++      v        = vv;
++      vrecadre = true;
++    }
+   }
+ 
+   for (;;)
+@@ -747,6 +758,17 @@ TopAbs_State BRepTopAdaptor_FClass2d::TestOnRestriction(const gp_Pnt2d& _Puv,
+         vv += vperiod;
+       }
+     }
++
++    if (IsUPer)
++    {
++      u        = uu;
++      urecadre = true;
++    }
++    if (IsVPer)
++    {
++      v        = vv;
++      vrecadre = true;
++    }
+   }
+ 
+   for (;;)
+-- 
+2.55.0
+

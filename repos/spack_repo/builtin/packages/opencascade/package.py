@@ -24,6 +24,7 @@ class Opencascade(CMakePackage):
 
     license("LGPL-2.1-only")
 
+    version("8.0.1", sha256="6297cc55a1720523a437c54d07dc16b9da8c5f5ab5800da3c6ebded568d53c18")
     version("8.0.0.p1", sha256="ad794cba1f377274b40050b098c106e02409def7e23b0763fae4b0aea95ac3a7")
     version("8.0.0", sha256="118398ff8a010c2cb693450d7e5e2690533c88208fc25bd2730451ec4fab0a0f")
     version(
@@ -64,6 +65,12 @@ class Opencascade(CMakePackage):
         sha256="bd0d7463259f469f8fc06a2b11eec7b0c89882aeea2f8c8647cf750c44b3e656",
         when="@:7.7.0",
     )
+
+    # Wrap periodic face classification inputs
+    patch("wrap-periodic-face-classification-inputs.patch", when="@8.0.1")
+
+    # Cache edge-to-face map in SolidExplorer to avoid rebuilding on every Perform call
+    patch("cache-edge-to-face-map.patch", when="@8.0.1")
 
     # Modules, per DAG at https://dev.opencascade.org/doc/refman/html/
     variant("modeling_data", default=True, description="Build Modeling Data module")

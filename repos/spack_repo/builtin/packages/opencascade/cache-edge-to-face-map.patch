@@ -1,0 +1,120 @@
+From 4c7a3ad1a8de0e6afad929ef4311120dc850039b Mon Sep 17 00:00:00 2001
+From: Wouter Deconinck <wdconinc@gmail.com>
+Date: Sat, 21 Mar 2026 17:25:28 -0500
+Subject: [PATCH 2/2] BRepClass3d: cache edge-to-face map in SolidExplorer to
+ avoid rebuilding on every Perform call
+
+TopExp::MapShapesAndAncestors(shape, EDGE, FACE) was called as a local
+variable inside BRepClass3d_SClassifier::Perform() on every point-
+classification query, even though the shape is fixed for the lifetime of
+the BRepClass3d_SolidExplorer.  BRepClass3d_SolidExplorer already caches
+the analogous edge/vertex map (myMapEV) and spatial index (myTree) in
+InitShape(); myMapEF follows the same pattern.
+
+Changes:
+- BRepClass3d_SolidExplorer.hxx: add myMapEF member and const GetMapEF()
+  getter; add missing const qualifiers to GetTree() and GetMapEV().
+- BRepClass3d_SolidExplorer.cxx (InitShape): clear and populate myMapEF
+  after myMapEV, once per shape load.
+- BRepClass3d_SClassifier.cxx (Perform): replace the three-line local
+  mapEF construction with a const reference to SolidExplorer.GetMapEF().
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+---
+ .../BRepClass3d/BRepClass3d_SClassifier.cxx   |  6 +++---
+ .../BRepClass3d/BRepClass3d_SolidExplorer.cxx |  2 ++
+ .../BRepClass3d/BRepClass3d_SolidExplorer.hxx | 19 ++++++++++++++++---
+ 3 files changed, 21 insertions(+), 6 deletions(-)
+
+diff --git a/src/ModelingAlgorithms/TKTopAlgo/BRepClass3d/BRepClass3d_SClassifier.cxx b/src/ModelingAlgorithms/TKTopAlgo/BRepClass3d/BRepClass3d_SClassifier.cxx
+index a7bed33d08..a8d9f02a26 100644
+--- a/src/ModelingAlgorithms/TKTopAlgo/BRepClass3d/BRepClass3d_SClassifier.cxx
++++ b/src/ModelingAlgorithms/TKTopAlgo/BRepClass3d/BRepClass3d_SClassifier.cxx
+@@ -229,9 +229,9 @@ void BRepClass3d_SClassifier::Perform(BRepClass3d_SolidExplorer& SolidExplorer,
+     return;
+   }
+ 
+-  NCollection_IndexedDataMap<TopoDS_Shape, NCollection_List<TopoDS_Shape>, TopTools_ShapeMapHasher>
+-    mapEF;
+-  TopExp::MapShapesAndAncestors(SolidExplorer.GetShape(), TopAbs_EDGE, TopAbs_FACE, mapEF);
++  const NCollection_IndexedDataMap<TopoDS_Shape,
++                                   NCollection_List<TopoDS_Shape>,
++                                   TopTools_ShapeMapHasher>& mapEF = SolidExplorer.GetMapEF();
+ 
+   BRepClass3d_BndBoxTreeSelectorLine aSelectorLine(aMapEV);
+ 
+diff --git a/src/ModelingAlgorithms/TKTopAlgo/BRepClass3d/BRepClass3d_SolidExplorer.cxx b/src/ModelingAlgorithms/TKTopAlgo/BRepClass3d/BRepClass3d_SolidExplorer.cxx
+index c92cb6e48b..3bfcfe818f 100644
+--- a/src/ModelingAlgorithms/TKTopAlgo/BRepClass3d/BRepClass3d_SolidExplorer.cxx
++++ b/src/ModelingAlgorithms/TKTopAlgo/BRepClass3d/BRepClass3d_SolidExplorer.cxx
+@@ -898,6 +898,7 @@ void BRepClass3d_SolidExplorer::Destroy()
+ void BRepClass3d_SolidExplorer::InitShape(const TopoDS_Shape& S)
+ {
+   myMapEV.Clear();
++  myMapEF.Clear();
+   myTree.Clear();
+ 
+   myShape       = S;
+@@ -965,6 +966,7 @@ void BRepClass3d_SolidExplorer::InitShape(const TopoDS_Shape& S)
+       TopExp::MapShapes(aE, myMapEV);
+     }
+   }
++  TopExp::MapShapesAndAncestors(myShape, TopAbs_EDGE, TopAbs_FACE, myMapEF);
+   //
+   // Fill mapEV with vertices and edges from shape
+   NCollection_UBTreeFiller<int, Bnd_Box> aTreeFiller(myTree);
+diff --git a/src/ModelingAlgorithms/TKTopAlgo/BRepClass3d/BRepClass3d_SolidExplorer.hxx b/src/ModelingAlgorithms/TKTopAlgo/BRepClass3d/BRepClass3d_SolidExplorer.hxx
+index ff3de91743..6f8efe50d6 100644
+--- a/src/ModelingAlgorithms/TKTopAlgo/BRepClass3d/BRepClass3d_SolidExplorer.hxx
++++ b/src/ModelingAlgorithms/TKTopAlgo/BRepClass3d/BRepClass3d_SolidExplorer.hxx
+@@ -22,9 +22,11 @@
+ #include <TopoDS_Shape.hxx>
+ #include <TopTools_ShapeMapHasher.hxx>
+ #include <NCollection_DataMap.hxx>
++#include <NCollection_IndexedDataMap.hxx>
++#include <NCollection_IndexedMap.hxx>
++#include <NCollection_List.hxx>
+ #include <TopAbs_State.hxx>
+ #include <TopExp_Explorer.hxx>
+-#include <NCollection_IndexedMap.hxx>
+ 
+ class gp_Pnt;
+ class TopoDS_Face;
+@@ -173,14 +175,22 @@ public:
+   Standard_EXPORT IntCurvesFace_Intersector& Intersector(const TopoDS_Face& F) const;
+ 
+   //! Return UB-tree instance which is used for edge / vertex checks.
+-  const NCollection_UBTree<int, Bnd_Box>& GetTree() { return myTree; }
++  const NCollection_UBTree<int, Bnd_Box>& GetTree() const { return myTree; }
+ 
+   //! Return edge/vertices map for current shape.
+-  const NCollection_IndexedMap<TopoDS_Shape, TopTools_ShapeMapHasher>& GetMapEV()
++  const NCollection_IndexedMap<TopoDS_Shape, TopTools_ShapeMapHasher>& GetMapEV() const
+   {
+     return myMapEV;
+   }
+ 
++  //! Return edge-to-face map for current shape.
++  const NCollection_IndexedDataMap<TopoDS_Shape,
++                                   NCollection_List<TopoDS_Shape>,
++                                   TopTools_ShapeMapHasher>& GetMapEF() const
++  {
++    return myMapEF;
++  }
++
+   Standard_EXPORT void Destroy();
+ 
+ private:
+@@ -201,6 +211,9 @@ private:
+   NCollection_DataMap<TopoDS_Shape, void*, TopTools_ShapeMapHasher> myMapOfInter;
+   NCollection_UBTree<int, Bnd_Box>                                  myTree;
+   NCollection_IndexedMap<TopoDS_Shape, TopTools_ShapeMapHasher>     myMapEV;
++  NCollection_IndexedDataMap<TopoDS_Shape,
++                             NCollection_List<TopoDS_Shape>,
++                             TopTools_ShapeMapHasher>               myMapEF;
+ };
+ 
+ #endif // _BRepClass3d_SolidExplorer_HeaderFile
+-- 
+2.55.0
+
